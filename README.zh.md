@@ -4,6 +4,17 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+> **本仓库是 [CZX2244/dsh-bilibili](https://github.com/CZX2244/dsh-bilibili) 的自用维护分支。**
+>
+> 与原版的差异只有一处：登录凭证与环境体检缓存改放在 `DSH_HOME`，不再写在插件目录内。
+> 原版把 `.sessdata.json` 与 `.envcheck.json` 存在插件根目录，而安装与升级会删除并重建整个插件目录，
+> 因此每次升级都会丢失 B站登录态、体检缓存也要重新探测。本分支把两者迁到
+> `<DSH_HOME>/bili-credentials.json` 与 `<DSH_HOME>/bili-envcheck-cache.json`，
+> 旧路径保留为兜底读取，两处都有时按 `saved_at` 取最新。
+>
+> 同步上游：`git fetch upstream && git merge upstream/main`（`upstream` 指向上游仓库）。
+> 该改动未提交上游，上游 issue #2 与本改动无关。
+
 DeepSeek Harness 工具插件：给 Agent 添加 `bilibili_extract` 工具。发一个 B 站链接，Agent 自动提取视频文字信息（文稿/评论/弹幕）并按需抓取关键帧，完成总结分析。
 
 > 本插件不打包任何第三方二进制或模型；所调用的开源项目与服务见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

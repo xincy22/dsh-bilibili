@@ -4,6 +4,18 @@
 
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+> **This repository is a self-maintained fork of [CZX2244/dsh-bilibili](https://github.com/CZX2244/dsh-bilibili).**
+>
+> The only difference from upstream: login credentials and the environment-check cache live in `DSH_HOME`
+> instead of inside the plugin directory. Upstream stores `.sessdata.json` and `.envcheck.json` in the
+> plugin root, but install and upgrade delete and recreate that whole directory, so every upgrade loses the
+> Bilibili login state and forces a fresh environment probe. This fork moves them to
+> `<DSH_HOME>/bili-credentials.json` and `<DSH_HOME>/bili-envcheck-cache.json`, keeps the legacy paths as a
+> read fallback, and picks the newest by `saved_at`.
+>
+> Sync with upstream: `git fetch upstream && git merge upstream/main` (`upstream` points at the original repo).
+> This change is not submitted upstream; upstream issue #2 is unrelated.
+
 A DeepSeek Harness tool plugin that gives agents a `bilibili_extract` tool. Send a Bilibili link and the agent extracts the video's text information (transcript / comments / danmaku), captures keyframes on demand, and produces a summary.
 
 > This plugin bundles no third-party binaries or models; the open-source projects and services it invokes are listed in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
